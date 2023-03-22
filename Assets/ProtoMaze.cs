@@ -7,16 +7,37 @@ public class ProtoMaze : MonoBehaviour
 {
     public GameObject[] mazeWall;
     public ArrayList inventory = new ArrayList();
+
     public int mazeSize = 10;
+
+    //--- PATH
+    private int startRow;
+    private int startColumn;
+    private int currentRow;
+    private int currentColumn;
+    private int endRow;
+    private int endColumn;
+
+    private int direction;
 
     private void Start()
     {
+        //CREATE STARTING POINT
+        startRow = Random.Range(0, mazeSize - 1);
+        startColumn = mazeSize - 1;
+        //SET CURRENT POINT
+        currentRow = startRow;
+        currentColumn = startColumn;
+        //CREATE END POINT
+        endRow = Random.Range(0, mazeSize - 1);
+        endColumn = 0;
+
         for (int i = 0; i < mazeSize; i++)
         {
             for (int j = 0; j < mazeSize; j++)
             {
                 inventory.Add(i + j);
-                Debug.Log("i value is: " + i + "/j value is: " + j);
+                //Debug.Log("i value is: " + i + "/j value is: " + j);
 
                 if (i == 0 && j == 0) //CORNER BL
                 {
@@ -42,7 +63,7 @@ public class ProtoMaze : MonoBehaviour
                 }
                 else if (i != 0 && j == mazeSize - 1) //EDGE U
                 {
-                    int[] upWall = {3, 6, 7, 10, 11, 13, 15 };
+                    int[] upWall = { 3, 6, 7, 10, 11, 13, 15 };
                     var uElement = upWall[Random.Range(0, upWall.Length)];
                     GameObject clone = Instantiate(mazeWall[uElement], new Vector3(i, 0, j), Quaternion.identity);
                 }
@@ -62,6 +83,16 @@ public class ProtoMaze : MonoBehaviour
                 {
                     GameObject clone = Instantiate(mazeWall[Random.Range(1, 5)], new Vector3(i, 0, j), Quaternion.identity);
                 }
+
+            }
+
+        }
+
+        while((currentRow != endRow) && (currentColumn != endColumn))
+        {
+            if(startRow < mazeSize - 1)
+            {
+
             }
         }
     }
@@ -72,6 +103,21 @@ public class ProtoMaze : MonoBehaviour
         {
             SceneManager.LoadScene("SampleScene");
         }
+    }
+
+    private void RandomDirection()
+    {
+        direction = Random.Range(0, 2);
+        Debug.Log(direction);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(new Vector3(startRow, 0.5f, startColumn), new Vector3(1f, 0.5f, 1f));
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(new Vector3(endRow, 0.5f, endColumn), new Vector3(1f, 0.5f, 1f));
     }
 
 }
