@@ -18,7 +18,10 @@ public class ProtoMaze : MonoBehaviour
     private int endRow;
     private int endColumn;
 
+    //--- TRAVELLING
     private int direction;
+    public enum moving { idle, left, right, down}
+    public moving movingState;
 
     private void Start()
     {
@@ -32,6 +35,7 @@ public class ProtoMaze : MonoBehaviour
         endRow = Random.Range(0, mazeSize - 1);
         endColumn = 0;
 
+        /*
         for (int i = 0; i < mazeSize; i++)
         {
             for (int j = 0; j < mazeSize; j++)
@@ -87,12 +91,13 @@ public class ProtoMaze : MonoBehaviour
             }
 
         }
+        */
 
         while((currentRow != endRow) && (currentColumn != endColumn))
         {
             if(startRow < mazeSize - 1)
             {
-
+                RandomDirection();
             }
         }
     }
@@ -108,6 +113,38 @@ public class ProtoMaze : MonoBehaviour
     private void RandomDirection()
     {
         direction = Random.Range(0, 2);
+
+        switch(movingState)
+        {
+            case moving.idle:
+
+                //---TRANSITIONS
+                if (direction == 0) movingState = moving.left;
+                else if (direction == 1) movingState = moving.right;
+                else if (direction == 2) movingState = moving.down;
+
+                break;
+
+            case moving.left:
+
+
+                break;
+
+            case moving.right:
+
+
+                break;
+
+            case moving.down:
+
+
+                break;
+
+            default:
+
+                break;
+
+        }
         Debug.Log(direction);
     }
 
