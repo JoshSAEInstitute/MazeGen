@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 public class ProtoMaze : MonoBehaviour
 {
     public GameObject[] mazeWall;
-    public ArrayList inventory = new ArrayList();
-    public ArrayList usedCoord = new ArrayList();
+    private int[,] inventory;
+    private string[,] usedCoord;
 
     public int mazeSize = 10;
 
     //--- PATH
     private int startRow = 1 ;
     private int startColumn = 1;
-    private int currentRow = 2;
-    private int currentColumn = 2;
+    private int currentRow = 1;
+    private int currentColumn = 1;
     private int endRow;
     private int endColumn;
 
@@ -27,38 +27,27 @@ public class ProtoMaze : MonoBehaviour
     private void Start()
     {
 
-        inventory.Add(startRow + startColumn);
-        usedCoord.Add(currentRow + currentColumn);
 
-        if(inventory.Contains(startRow + startColumn) == usedCoord.Contains(currentRow + currentColumn))
-        {
-            Debug.Log("They Match");
-        }
-        else if (inventory.Contains(startRow + startColumn) != usedCoord.Contains(currentRow + currentColumn))
-        {
-            Debug.Log("Not matching");
-        }
 
-        /*
         //CREATE STARTING POINT
         startRow = Random.Range(0, mazeSize - 1);
         startColumn = mazeSize - 1;
         //SET CURRENT POINT
         currentRow = startRow;
         currentColumn = startColumn;
-        usedCoord.Add(currentRow + currentColumn);
+        //usedCoord.Add(currentRow, currentColumn);
         //CREATE END POINT
         endRow = Random.Range(0, mazeSize - 1);
         endColumn = 0;
-        */
-        /*
+
+
         for (int i = 0; i < mazeSize; i++)
         {
             for (int j = 0; j < mazeSize; j++)
             {
-                inventory.Add(i + j);
-                //Debug.Log("i value is: " + i + "/j value is: " + j);
 
+                Debug.Log("Inventory " + i + ":" + j + " is " + inventory[i,j]);
+                /*
                 if (i == 0 && j == 0) //CORNER BL
                 {
                     GameObject clone = Instantiate(mazeWall[9], new Vector3(i, 0, j), Quaternion.identity);
@@ -103,11 +92,12 @@ public class ProtoMaze : MonoBehaviour
                 {
                     GameObject clone = Instantiate(mazeWall[Random.Range(1, 5)], new Vector3(i, 0, j), Quaternion.identity);
                 }
+                */
 
             }
 
         }
-        */
+
         /*
         while((currentRow != endRow) && (currentColumn != endColumn))
         {
@@ -118,7 +108,7 @@ public class ProtoMaze : MonoBehaviour
         }
         */
     }
-
+    #region functions
     private void Update()
     {
         if (Input.GetKeyDown("space"))
@@ -159,7 +149,7 @@ public class ProtoMaze : MonoBehaviour
         }
         Debug.Log(direction);
     }
-
+    #endregion
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
