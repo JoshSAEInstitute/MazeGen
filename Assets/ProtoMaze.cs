@@ -7,34 +7,50 @@ public class ProtoMaze : MonoBehaviour
 {
     public GameObject[] mazeWall;
     public ArrayList inventory = new ArrayList();
+    public ArrayList usedCoord = new ArrayList();
 
     public int mazeSize = 10;
 
     //--- PATH
-    private int startRow;
-    private int startColumn;
-    private int currentRow;
-    private int currentColumn;
+    private int startRow = 1 ;
+    private int startColumn = 1;
+    private int currentRow = 2;
+    private int currentColumn = 2;
     private int endRow;
     private int endColumn;
 
     //--- TRAVELLING
     private int direction;
-    public enum moving { idle, left, right, down}
+    public enum moving { idle, leftRight, rightDown, leftDown, downRight, downLeft, down}
     public moving movingState;
 
     private void Start()
     {
+
+        inventory.Add(startRow + startColumn);
+        usedCoord.Add(currentRow + currentColumn);
+
+        if(inventory.Contains(startRow + startColumn) == usedCoord.Contains(currentRow + currentColumn))
+        {
+            Debug.Log("They Match");
+        }
+        else if (inventory.Contains(startRow + startColumn) != usedCoord.Contains(currentRow + currentColumn))
+        {
+            Debug.Log("Not matching");
+        }
+
+        /*
         //CREATE STARTING POINT
         startRow = Random.Range(0, mazeSize - 1);
         startColumn = mazeSize - 1;
         //SET CURRENT POINT
         currentRow = startRow;
         currentColumn = startColumn;
+        usedCoord.Add(currentRow + currentColumn);
         //CREATE END POINT
         endRow = Random.Range(0, mazeSize - 1);
         endColumn = 0;
-
+        */
         /*
         for (int i = 0; i < mazeSize; i++)
         {
@@ -92,7 +108,7 @@ public class ProtoMaze : MonoBehaviour
 
         }
         */
-
+        /*
         while((currentRow != endRow) && (currentColumn != endColumn))
         {
             if(startRow < mazeSize - 1)
@@ -100,6 +116,7 @@ public class ProtoMaze : MonoBehaviour
                 RandomDirection();
             }
         }
+        */
     }
 
     private void Update()
@@ -119,18 +136,13 @@ public class ProtoMaze : MonoBehaviour
             case moving.idle:
 
                 //---TRANSITIONS
-                if (direction == 0) movingState = moving.left;
-                else if (direction == 1) movingState = moving.right;
+                if (direction == 0) movingState = moving.leftRight;
+                //else if (direction == 1) movingState = moving.right;
                 else if (direction == 2) movingState = moving.down;
 
                 break;
 
-            case moving.left:
-
-
-                break;
-
-            case moving.right:
+            case moving.leftRight:
 
 
                 break;
