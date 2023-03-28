@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class ProtoMaze : MonoBehaviour
 {
+    public static int mazeSize = 10;
+
     public GameObject[] mazeWall;
-    private int[,] inventory;
+    private int[,] inventory = new int[mazeSize, mazeSize];
     private string[,] usedCoord;
 
-    public int mazeSize = 10;
 
     //--- PATH
-    private int startRow = 1 ;
-    private int startColumn = 1;
-    private int currentRow = 1;
-    private int currentColumn = 1;
+    private int startRow;
+    private int startColumn;
+    private int currentRow;
+    private int currentColumn;
     private int endRow;
     private int endColumn;
 
@@ -27,10 +28,8 @@ public class ProtoMaze : MonoBehaviour
     private void Start()
     {
 
-
-
         //CREATE STARTING POINT
-        startRow = Random.Range(0, mazeSize - 1);
+        startRow = Random.Range(0, mazeSize);
         startColumn = mazeSize - 1;
         //SET CURRENT POINT
         currentRow = startRow;
@@ -40,14 +39,17 @@ public class ProtoMaze : MonoBehaviour
         endRow = Random.Range(0, mazeSize - 1);
         endColumn = 0;
 
-
-        for (int i = 0; i < mazeSize; i++)
+        /*
+        for (int i = 0; i < mazeSize - 1; i++)
         {
-            for (int j = 0; j < mazeSize; j++)
+            for (int j = 0; j < mazeSize - 1; j++)
             {
 
-                Debug.Log("Inventory " + i + ":" + j + " is " + inventory[i,j]);
-                /*
+                inventory = new int[i,j];
+
+                Debug.Log(inventory[0, 0]);
+
+
                 if (i == 0 && j == 0) //CORNER BL
                 {
                     GameObject clone = Instantiate(mazeWall[9], new Vector3(i, 0, j), Quaternion.identity);
@@ -92,21 +94,75 @@ public class ProtoMaze : MonoBehaviour
                 {
                     GameObject clone = Instantiate(mazeWall[Random.Range(1, 5)], new Vector3(i, 0, j), Quaternion.identity);
                 }
-                */
 
             }
 
         }
+        */
 
+        if (startRow == (mazeSize - 1))
+        {
+            //Edge of TOP RIGHT
+            //I need a value less of it
+            int a = Random.Range(0, mazeSize - 1);
+            currentRow = a;
+            //In case is the same value, then goes straight down
+            if (a == mazeSize - 1)
+            {
+                int[] D = { 1, 2, 4, 14 };
+                var DElement = D[Random.Range(0, D.Length)];
+                GameObject clone = Instantiate(mazeWall[DElement], new Vector3(a, 0, startColumn), Quaternion.identity);
+            } else
+            {
+                for (int b = startRow; a < b; b--)
+                {
+                    int[] LR = { 1, 3, 5, 15 };
+                    var LRElement = LR[Random.Range(0, LR.Length)];
+                    GameObject clone = Instantiate(mazeWall[LRElement], new Vector3(b, 0, startColumn), Quaternion.identity);
+                }
+            }
+        } 
+        else if (startRow == 0)
+        {
+            int a = Random.Range(0, mazeSize - 1);
+            currentRow = a;
+            //In case is the same value, then goes straight down
+            if (a == 0)
+            {
+                int[] D = { 1, 2, 4, 14 };
+                var DElement = D[Random.Range(0, D.Length)];
+                GameObject clone = Instantiate(mazeWall[DElement], new Vector3(a, 0, startColumn), Quaternion.identity);
+            } else
+            {
+                for (int b = startRow; b < a; b++)
+                {
+                    int[] LR = { 1, 3, 5, 15 };
+                    var LRElement = LR[Random.Range(0, LR.Length)];
+                    GameObject clone = Instantiate(mazeWall[LRElement], new Vector3(b, 0, startColumn), Quaternion.identity);
+                }
+            }
+        }
+        else
+        {
+        }
         /*
-        while((currentRow != endRow) && (currentColumn != endColumn))
+        while ((currentRow != endRow) && (currentColumn != endColumn))
         {
             if(startRow < mazeSize - 1)
             {
-                RandomDirection();
+                //Edge of TOP RIGHT
+                //I need a value less of it
+                int a = Random.Range(0, mazeSize - 1);
+                for(int b = startRow; a < b; b--)
+                {
+                    int[] LR = { 1, 3, 5, 15 };
+                    var LRElement = LR[Random.Range(0, LR.Length)];
+                    GameObject clone = Instantiate(mazeWall[LRElement], new Vector3(b, 0, startColumn), Quaternion.identity);
+                }
             }
         }
         */
+
     }
     #region functions
     private void Update()
@@ -127,7 +183,7 @@ public class ProtoMaze : MonoBehaviour
 
                 //---TRANSITIONS
                 if (direction == 0) movingState = moving.leftRight;
-                //else if (direction == 1) movingState = moving.right;
+                else if (direction == 1) movingState = moving.leftRight;
                 else if (direction == 2) movingState = moving.down;
 
                 break;
@@ -136,7 +192,22 @@ public class ProtoMaze : MonoBehaviour
 
 
                 break;
+            case moving.rightDown:
 
+
+                break;
+            case moving.leftDown:
+
+
+                break;
+            case moving.downRight:
+
+
+                break;
+            case moving.downLeft:
+
+
+                break;
             case moving.down:
 
 
@@ -157,6 +228,9 @@ public class ProtoMaze : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(new Vector3(endRow, 0.5f, endColumn), new Vector3(1f, 0.5f, 1f));
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(new Vector3(currentRow, 0.5f, currentColumn), new Vector3(1f, 0.5f, 1f));
     }
 
 }
