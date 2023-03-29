@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 655734343832633514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4594598509561819646}
   m_RootOrder: 4
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathDirection: 0
+  spawned: 0
 --- !u!65 &7688660766931110865
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104,8 +105,8 @@ Transform:
   m_GameObject: {fileID: 2170028818835890520}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4594598509561819646}
   m_RootOrder: 7
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathDirection: 3
+  spawned: 0
 --- !u!65 &3267561179371076273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -510,8 +512,8 @@ Transform:
   m_GameObject: {fileID: 4747105472785413992}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4594598509561819646}
   m_RootOrder: 5
@@ -529,6 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathDirection: 1
+  spawned: 0
 --- !u!65 &2709612214403870699
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -586,8 +589,8 @@ Transform:
   m_GameObject: {fileID: 4808834622964560727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4594598509561819646}
   m_RootOrder: 6
@@ -605,6 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathDirection: 2
+  spawned: 0
 --- !u!65 &3301171064676957584
 BoxCollider:
   m_ObjectHideFlags: 0

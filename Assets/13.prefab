@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 1372633550945293511}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6794177642137123121}
   m_RootOrder: 4
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathDirection: 0
+  spawned: 0
 --- !u!65 &4756873335471441960
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104,8 +105,8 @@ Transform:
   m_GameObject: {fileID: 5734449548379428457}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6794177642137123121}
   m_RootOrder: 5
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathDirection: 2
+  spawned: 0
 --- !u!65 &7790461245442268506
 BoxCollider:
   m_ObjectHideFlags: 0
