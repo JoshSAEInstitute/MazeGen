@@ -16,9 +16,17 @@ public class RoomSpawner : MonoBehaviour
     private int rand;
     public bool spawned = false;
 
+    public float waitTime = 4f;
+
+    private void Awake() 
+    { 
+        inventory = GameObject.FindGameObjectWithTag("Paths").GetComponent<PathInventory>(); 
+    }
+
     private void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Paths").GetComponent<PathInventory>();
+        //Destroys the spawner after a certain amount of time to reduce clatter.
+        Destroy(gameObject, waitTime);
 
         // Call a function using invoke after a delay
         Invoke("Spawn", 0.1f);
@@ -60,21 +68,15 @@ public class RoomSpawner : MonoBehaviour
  
     }
 
-    private void Update()
-    {
-
-        if (Input.GetKeyDown("space"))
-        {
-            SceneManager.LoadScene("SampleScene");
-        }
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Spawner") && other.GetComponent<RoomSpawner>().spawned == true)
+        if (other.CompareTag("Spawner"))
         {
-            Destroy(gameObject);
+            if(other.GetComponent<RoomSpawner>().spawned == false && spawned == false)
+            {
+                Instantiate(inventory.closedPath, transform.position, Quaternion.identity);
+            }
+            spawned= true;
         }
     }
 

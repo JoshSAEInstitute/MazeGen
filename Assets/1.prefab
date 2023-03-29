@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7593732058072443869}
-  - component: {fileID: 6332852484061097928}
   - component: {fileID: 4591454036854224548}
   - component: {fileID: 8423898735758316863}
+  - component: {fileID: 163391356}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Annihilator
   m_TagString: Spawner
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -34,20 +34,6 @@ Transform:
   m_Father: {fileID: 5239032599562643146}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6332852484061097928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139886350130917540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a6dd8cc818700d4fa81acf99f0f533d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathDirection: 0
-  spawned: 0
 --- !u!65 &4591454036854224548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77,6 +63,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &163391356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139886350130917540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c6fa60d71332b40a42099448a156e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203697461269456812
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,4 +10,6 @@ public class PathInventory : MonoBehaviour
     public GameObject[] bottomPath;
     public GameObject[] leftPath;
 
+    public GameObject closedPath;
+
 }
